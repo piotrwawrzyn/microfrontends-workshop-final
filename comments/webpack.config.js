@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
 
 module.exports = {
   mode: 'development',
@@ -6,6 +7,14 @@ module.exports = {
     port: 8082
   },
   plugins: [
+    new ModuleFederationPlugin({
+      name: 'comments',
+      filename: 'remoteEntry.js',
+      exposes: {
+        './CommentsApp': './src/bootstrap'
+      },
+      shared: ['lorem-ipsum']
+    }),
     new HtmlWebpackPlugin({
       template: './public/index.html'
     })

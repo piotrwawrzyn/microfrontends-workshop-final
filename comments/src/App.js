@@ -8,8 +8,6 @@ const articleContent = loremIpsum({
 });
 
 const App = () => {
-  console.log('xD');
-
   const comments = ['', '', '', ''].map(_ => {
     return loremIpsum({
       count: 2,
